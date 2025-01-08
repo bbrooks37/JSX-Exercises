@@ -41,3 +41,12 @@ Add an *App* component that renders at least three copies of the *Person* co
 You may recall that bootstrap’s UI elements are referred to in the [documentation](https://getbootstrap.com/docs/4.3/components/alerts/) as “components.” Using your knowledge of React so far, build a couple bootstrap components as React components. Good candidates include the Alert and Button components.
 
 Don’t worry about building Bootstrap components that use JavaScript (eg, Carousels, Popovers, Modals, etc). You’ll need to learn a bit more about React in order to implement these components.
+
+To install the necessary node modules for the further study, we ran the following command in the terminal:
+
+>> npm install
+>> npm install react react-dom prop-types - Installing React and Related Dependencies
+>> npm install bootstrap react-bootstrap - Installing Bootstrap and react-bootstrap
+>> npm install -g http-server - Installing http-server (if used for serving static files)
+>> http-server - Running http-server in the directory containing index.html
+
