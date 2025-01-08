@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My React App</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+  <script type="text/babel">
+    const MAX_NAME_LENGTH_TO_SHOW = 6;
+
+    const personData = {
+      name: "Alice",
+      age: 30,
+      hobbies: ["cats", "bridge", "fighting the patriarchy"],
+    };
+
+    function Person({ age, hobbies, name }) {
+      const voteText = age >= 18 ? "Go vote!" : "Go study!";
+
+      const hobbiesLIs = hobbies.length
+        ? hobbies.map((hobby, index) => <li key={index}>{hobby}</li>)
+        : <li>No hobbies listed</li>;
+
+      return (
+        <div>
+          <p>Learn some information about this person:</p>
+          <ul>
+            <li>Name: {name.slice(0, MAX_NAME_LENGTH_TO_SHOW)}</li>
+            <li>Age: {age}</li>
+            <li>
+              Hobbies:
+              <ul>{hobbiesLIs}</ul>
+            </li>
+          </ul>
+          <h3>{voteText}</h3>
+        </div>
+      );
+    }
+
+    const rootElement = document.getElementById('root');
+    const root = ReactDOM.createRoot(rootElement);
+
+    root.render(
+      <Person name={personData.name} age={personData.age} hobbies={personData.hobbies} />
+    );
+  </script>
+</body>
+</html>

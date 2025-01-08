@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React JSX Intro Exercise</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<h1>Part 4 - Further Study</h1>
+
+<div id="root"> <!-- component will go in this div --> </div>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+<script type="text/babel">
+
+  const MAX_NAME_LENGTH_TO_SHOW = 6;
+
+  const personData = {
+    name: "Alice",
+    age: 30,
+    hobbies: ["cats", "bridge", "fighting the patriarchy"],
+  };
+
+  function Person({ age, hobbies, name }) {
+    const voteText = age >= 18 ? "Go vote!" : "Go study!";
+
+    const hobbiesLIs = hobbies.length
+      ? hobbies.map((hobby, index) => <li key={index}>{hobby}</li>)
+      : <li>No hobbies listed</li>;
+
+    return (
+      <div>
+        <p>Learn some information about this person:</p>
+        <ul>
+          <li>Name: {name.slice(0, MAX_NAME_LENGTH_TO_SHOW)}</li>
+          <li>Age: {age}</li>
+          <li>
+            Hobbies:
+            <ul>{hobbiesLIs}</ul>
+          </li>
+        </ul>
+        <h3>{voteText}</h3>
+      </div>
+    );
+  }
+
+  function AlertComponent({ variant, message }) {
+    return (
+      <div className={`alert alert-${variant}`} role="alert">
+        {message}
+      </div>
+    );
+  }
+
+  function ButtonComponent({ variant, label, onClick }) {
+    return (
+      <button type="button" className={`btn btn-${variant}`} onClick={onClick}>
+        {label}
+      </button>
+    );
+  }
+
+  function App() {
+    const [alertVisible, setAlertVisible] = React.useState(false);
+
+    const showAlert = () => {
+      setAlertVisible(true);
+    };
+
+    const hideAlert = () => {
+      setAlertVisible(false);
+    };
+
+    return (
+      <div className="container mt-5">
+        {alertVisible && (
+          <AlertComponent variant="warning" message="This is an alert message!" />
+        )}
+        <ButtonComponent variant="primary" label="Show Alert" onClick={showAlert} />
+        <ButtonComponent variant="secondary" label="Hide Alert" onClick={hideAlert} />
+        <Person name={personData.name} age={personData.age} hobbies={personData.hobbies} />
+      </div>
+    );
+  }
+
+  const rootElement = document.getElementById('root');
+  const root = ReactDOM.createRoot(rootElement);
+
+  root.render(<App />);
+
+</script>
+
+</body>
+</html>
